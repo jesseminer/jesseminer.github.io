@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+  <title>Jesse's Fair Slot Machine</title>
+  <link type="text/css" rel="stylesheet" href="slots.css" />
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="slots.js" /></script>
+  <script type="text/javascript">
+    $(function() {
+      $('#bets input').click(function() { bet = this.value; });
+      start();
+    });
+  </script>
+</head>
+
+<body>
+  <div id="container">
+
+  <div id="slots">
+    <p>
+      <img id="slot1" src="" alt="slot1" />
+      <img id="slot2" src="" alt="slot2" />
+      <img id="slot3" src="" alt="slot3" />
+    </p>
+    <p id="message"></p>
+  </div>
+
+  <div id="controls">
+    <p>Money: <span id="bank"></span></p>
+    <p id="bets">Your bet:<br />
+       <input id="bet1" type="radio" name="bet" value="1" /><label for="bet1"> 1</label><br />
+       <input id="bet2" type="radio" name="bet" value="10" /><label for="bet2"> 10</label><br />
+       <input id="bet3" type="radio" name="bet" value="50" /><label for="bet3"> 50</label><br />
+       <input id="bet4" type="radio" name="bet" value="100" /><label for="bet4"> 100</label><br />
+       <input id="bet5" type="radio" name="bet" value="all" /><label for="bet5"> All I have left!</label>
+    </p>
+    <p>
+      <input onclick="spin()" value="SPIN" type="button" />
+      <input onclick="start()" value="Start Over" type="button" />
+    </p>
+  </div>
+
+  <div class="clear"></div>
+
+  </div>
+</body>
+</html>
