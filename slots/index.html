@@ -28,7 +28,10 @@
   </div>
 
   <div id="controls">
-    <p>Money: <span id="bank"></span></p>
+    <p>
+      Money:<br />
+      <span id="bank"></span>
+    </p>
     <p id="bets">Your bet:<br />
        <input id="bet1" type="radio" name="bet" value="1" /><label for="bet1"> 1</label><br />
        <input id="bet2" type="radio" name="bet" value="10" /><label for="bet2"> 10</label><br />
@@ -37,8 +40,10 @@
        <input id="bet5" type="radio" name="bet" value="all" /><label for="bet5"> All I have left!</label>
     </p>
     <p>
-      <input onclick="spin()" value="SPIN" type="button" />
-      <input onclick="start()" value="Start Over" type="button" />
+      <input id="spin" onclick="spin()" value="SPIN" type="button" />
+    </p>
+    <p>
+      <a id="start-over" href="javascript:start();">Start Over</a>
     </p>
   </div>
 
