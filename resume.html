@@ -11,12 +11,12 @@
     .right { float: right; }
     .centered { text-align: center; }
 
-    #name { text-align: center; font-size: 20px; font-weight: bold; }
+    #name { font-size: 20px; font-weight: bold; }
     #header { border-bottom: 1px solid #000; padding-bottom: 5px; margin-bottom: 20px; }
 
     .section { margin: 16px 0px; }
-    .section h2 { font: bold 15px "trebuchet ms"; background-color: #ccc; padding: 2px 6px; letter-spacing: .8px; }
-    .section div { border: 1px solid #ccc; border-top: none; padding: 10px; }
+    .section h2 { font: bold 15px "trebuchet ms"; background-color: #d0d0d0; padding: 2px 6px; letter-spacing: .8px; }
+    .section div { border: 1px solid #d0d0d0; border-top: none; padding: 10px; }
     .section p { margin-bottom: 10px; }
     
     li { margin-left: 30px; }
@@ -27,24 +27,17 @@
 
 <body>
   <div id="header">
-    <div class="centered"><span id="name">Jesse Miner</span><br /><b>jdm65@cornell.edu</b></div>
-    <div class="right">5689 Burr Rd.<br />Trumansburg, NY 14886</div>
-    <div>Home: (607) 387-9034<br />Cell: (607) 227-6412</div>
+    <div class="centered"><span id="name">Jesse Miner</span></div>
+    <div class="right">523 E. State St. Apt. 1<br />Ithaca, NY 14850</div>
+    <div>jdm65@cornell.edu<br />(607) 227-6412</div>
   </div>
-  
-  <div class="section">
-    <h2>Education</h2>
-    <div>Cornell University Engineering School, Ithaca NY<br />
-    <ul>
-      <li>B.S. in Information Science, May 2010</li>
-      <li>GPA: 3.60</li>
-    </ul>
-    </div>
-  </div>
-  
+
   <div class="section">
     <h2>Employment</h2>
     <div>
+    <p><span class="right">March 2012 - Present</span><b>GiveGab</b>, Ithaca NY<br />Software Engineer<br />
+      Add and maintain features in a production Ruby on Rails application. Extensive use of jQuery, Backbone, and AJAX.
+    </p>
     <p><span class="right">March - August 2011</span><b>Singlebrook Technology</b>, Ithaca NY<br />Web Developer<br />
       Developed new features for several clients' websites, primarily in Ruby on Rails. Worked in a team environment using an agile development process. Met with clients to determine project requirements.
     </p>
@@ -59,29 +52,24 @@
     </p>
     </div>
   </div>
-  
-  <!--<div class="section">
-    <h2>Relevant Courses</h2>
-    <div>
-    <p><b>Software Engineering (CS 5150)</b><br />
-      Worked with a team of 7 people to create a website for Cornell's Student Disability Services.  Wrote much of the back-end PHP.  After the class had ended, the client hired me to add some features.  The website is in full use, allowing injured or disabled students to request rides to and from class via the CULift transportation service.
-    </p>
-    <p><b>Data-Driven Web Applications (INFO 3300)</b><br />
-      Developed web applications using tools such as Google Web Toolkit and Google App Engine.  Wrote a movie tagging/rating system.  Created a Facebook application in PHP for the final project.
-    </p>
-    <p><b>Human-Computer Interaction (INFO 3450)</b><br />
-      Collaborated with a group of 4 people to design (but not implement) several applications with a focus on users' needs.  Studied user testing, personas, use cases, and design principles.
-    </p>
+
+  <div class="section">
+    <h2>Education</h2>
+    <div>Cornell University Engineering School, Ithaca NY<br />
+    <ul>
+      <li>B.S. in Information Science, May 2010</li>
+      <li>GPA: 3.60</li>
+    </ul>
     </div>
-  </div>-->
+  </div>
   
   <div class="section">
     <h2>Computer Skills</h2>
     <div>
     <table cellspacing="0">
-      <tr><td class="leftcol">Languages:</td><td>PHP, Javascript/AJAX/jQuery, MySQL, Ruby, Python, Java, C, HTML, CSS</td></tr>
-      <tr><td class="leftcol">Frameworks:</td><td>Ruby on Rails, Zope, Google App Engine, Google Web Toolkit, CommonSpot</td></tr>
-      <tr><td class="leftcol">Tools:</td><td>Photoshop, InDesign, Git, XAMPP/MAMP</td></tr>
+      <tr><td class="leftcol">Languages:</td><td>Ruby, Javascript, SQL, PHP, Python, Java, HTML, CSS</td></tr>
+      <tr><td class="leftcol">Frameworks:</td><td>Ruby on Rails, Backbone.js, Bootstrap</td></tr>
+      <tr><td class="leftcol">APIs/Tools:</td><td>Heroku, Git, Redis, Stripe</td></tr>
       <tr><td class="leftcol">Other:</td><td>User interaction design, including user testing, personas, and use cases</td></tr>
     </table>
     </div>
