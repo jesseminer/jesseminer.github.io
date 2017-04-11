@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<head>
+  <title>Games</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+  <link type="text/css" rel="stylesheet" href="games.css" />
+</head>
+
+<body>
+
+  <div id="settings">
+    <p id="series_checkboxes">
+      <strong>Series</strong><br />
+      <input id="check_all" type="button" value="Check All" />&nbsp;
+      <input id="uncheck_all" type="button" value="Uncheck All" /><br />
+    </p>
+    <p id="years">
+      <strong>Years</strong><br />
+      <input id="years_auto" type="radio" name="years" value="auto" checked="checked" /><label for="years_auto"> Auto</label><br />
+      <input id="years_custom" type="radio" name="years" value="custom" />
+      <input id="start_year" type="text" size="4" maxlength="4" /><label for="years_custom"> to </label><input id="end_year" type="text" size="4" maxlength="4" />
+    </p>
+    <p id="view_types">
+      <strong>View</strong><br />
+      <input id="view_timeline" type="radio" name="view" value="timeline" checked="checked" /><label for="view_timeline"> Timeline</label><br />
+      <input id="view_list" type="radio" name="view" value="list" /><label for="view_list"> List</label>
+    </p>
+    <p>
+      <strong id="notes"></strong>
+    </p>
+  </div>
+
+  <div id="main"></div>
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="games.js"></script>
+  <script type="text/javascript" src="game_data.js"></script>
+
+</body>
+
+</html>
