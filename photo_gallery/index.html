@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+  <title>Jesse&#39;s Photo Gallery</title>
+  <link type="text/css" rel="stylesheet" href="gallery.css" />
+</head>
+
+<body>
+  <div id="banner"><a href="index.html">Jesse&#39;s Photo Gallery</a></div>
+  <div id="nav">
+    <a href="index.html">Photos</a><a href="albums.html">Albums</a>
+  </div>
+  <div id="content"></div>
+
+  <script type="text/html" id="photo-browser-tmpl">
+    <div id="photo-browser">
+      <div id="left_sidebar">
+        <p>
+          <input id="search_caption" type="text" placeholder="Search Captions" onkeyup="searchPhotos()" />
+        </p>
+        <div>
+          <h3>Albums</h3>
+          <div id="search_albums">
+            <a href="javascript:;" onclick="$('input', '#search_albums').prop('checked', true); searchPhotos();">All</a> |
+            <a href="javascript:;" onclick="$('input', '#search_albums').prop('checked', false); searchPhotos();">None</a>
+            {{#each albums}}
+              <div>
+                <label for="album-{{id}}">
+                  <input id="album-{{id}}" type="checkbox" checked="checked"> {{name}}
+                </label>
+              </div>
+            {{/each}}
+            <div>
+              <label for="album-0">
+                <input id="album-0" type="checkbox" checked="checked"> Loose photos
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="thumbnails"></div>
+    </div>
+  </script>
+
+  <script type="text/html" id="photo-tmpl">
+    <p>
+      <a class="back-to-photos" href="#">Back to All Photos</a>
+    </p>
+    <div class="center">
+      <img class="full-image" src="images/photos/image{{id}}.jpg">
+      <div class="margin-top">{{caption}}</div>
+    </div>
+  </script>
+
+  <script type="text/html" id="thumbnail-tmpl">
+    <img class="thumbnail" src="images/thumbnails/thumb{{id}}.jpg" data-id="{{id}}">
+  </script>
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
+  <script type="text/javascript" src="gallery.js"></script>
+</body>
+
+</html>
