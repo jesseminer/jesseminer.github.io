@@ -1,13 +1,13 @@
 window.app = {};
 
-app.albums = [
+app.albums = new Backbone.Collection([
   { id: 1, name: 'Cats' },
   { id: 2, name: 'Computer Graphics' },
   { id: 3, name: 'Taughannock Falls' },
   { id: 4, name: 'Winter' }
-];
+]);
 
-app.photos = [
+app.photos = new Backbone.Collection([
   { id: 1, caption: 'Luna' },
   { id: 2, caption: 'shiny' },
   { id: 4, caption: 'Inca' },
@@ -28,19 +28,60 @@ app.photos = [
   { id: 26, caption: '' },
   { id: 27, caption: '' },
   { id: 28, caption: 'space shuttle' }
-];
+]);
 
-app.renderPhotoBrowser = function () {
-  $('#content').html(app.template('photo-browser', app));
-  app.renderThumbnails();
-};
+app.PhotoBrowser = Backbone.View.extend({
+  el: '#content',
 
-app.renderThumbnails = function () {
-  $('#thumbnails').empty();
-  _.forEach(app.photos, function (photo) {
-    $('#thumbnails').append(app.template('thumbnail', photo));
-  });
-};
+  render: function () {
+    this.$el.html(app.template('photo-browser'));
+    this.renderThumbnails();
+    return this;
+  },
+
+  renderThumbnails: function () {
+    this.$('#thumbnails').empty();
+    var view = this;
+    app.photos.each(function (photo) {
+      view.$('#thumbnails').append(new app.ThumbnailView({ model: photo }).render().$el);
+    });
+  }
+});
+
+app.PhotoView = Backbone.View.extend({
+  el: '#content',
+
+  events: {
+    'click .back-to-photos': 'showPhotoBrowser'
+  },
+
+  render: function () {
+    this.$el.html(app.template('photo', this.model.toJSON()));
+    return this;
+  },
+
+  showPhotoBrowser: function () {
+    this.undelegateEvents();
+    new app.PhotoBrowser().render();
+  }
+});
+
+app.ThumbnailView = Backbone.View.extend({
+  tagName: 'span',
+
+  events: {
+    'click': 'showPhoto'
+  },
+
+  render: function () {
+    this.$el.append(app.template('thumbnail', this.model.toJSON()));
+    return this;
+  },
+
+  showPhoto: function () {
+    new app.PhotoView({ model: this.model }).render();
+  }
+});
 
 app.template = function (id, data) {
   return Handlebars.compile($('#' + id + '-tmpl').html())(data);
@@ -48,11 +89,5 @@ app.template = function (id, data) {
 
 $(function() {
   $('#nav a:nth-child(1)').addClass('current');
-
-  $('body').on('click', '.thumbnail', function () {
-    var photo = _.find(app.photos, { id: $(this).data('id') });
-    $('#content').html(app.template('photo', photo));
-  }).on('click', '.back-to-photos', app.renderPhotoBrowser);
-
-  app.renderPhotoBrowser();
+  new app.PhotoBrowser().render();
 });
