@@ -30,6 +30,21 @@ app.photos = new Backbone.Collection([
   { id: 28, caption: 'space shuttle' }
 ]);
 
+app.Router = Backbone.Router.extend({
+  routes: {
+    '': 'photoBrowser',
+    'photos/:id': 'showPhoto'
+  },
+
+  photoBrowser: function () {
+    new app.PhotoBrowser().render();
+  },
+
+  showPhoto: function (id) {
+    new app.PhotoView({ model: app.photos.get(id) }).render();
+  }
+});
+
 app.PhotoBrowser = Backbone.View.extend({
   el: '#content',
 
@@ -51,35 +66,18 @@ app.PhotoBrowser = Backbone.View.extend({
 app.PhotoView = Backbone.View.extend({
   el: '#content',
 
-  events: {
-    'click .back-to-photos': 'showPhotoBrowser'
-  },
-
   render: function () {
     this.$el.html(app.template('photo', this.model.toJSON()));
     return this;
-  },
-
-  showPhotoBrowser: function () {
-    this.undelegateEvents();
-    new app.PhotoBrowser().render();
   }
 });
 
 app.ThumbnailView = Backbone.View.extend({
   tagName: 'span',
 
-  events: {
-    'click': 'showPhoto'
-  },
-
   render: function () {
-    this.$el.append(app.template('thumbnail', this.model.toJSON()));
+    this.$el.html(app.template('thumbnail', this.model.toJSON()));
     return this;
-  },
-
-  showPhoto: function () {
-    new app.PhotoView({ model: this.model }).render();
   }
 });
 
@@ -88,6 +86,12 @@ app.template = function (id, data) {
 };
 
 $(function() {
-  $('#nav a:nth-child(1)').addClass('current');
-  new app.PhotoBrowser().render();
+  app.router = new app.Router();
+
+  $('body').on('click', 'a.js-route', function (e) {
+    e.preventDefault();
+    app.router.navigate($(this).attr('href'), { trigger: true });
+  });
+
+  Backbone.history.start({ pushState: true, root: '/photo_gallery/' });
 });

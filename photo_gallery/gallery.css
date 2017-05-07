@@ -52,6 +52,10 @@ a img { border: none; }
   width: 100%;
 }
 
+#thumbnails a {
+  text-decoration: none;
+}
+
 .thumbnail {
   height: 100px;
 }
