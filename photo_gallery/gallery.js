@@ -93,5 +93,5 @@ $(function() {
     app.router.navigate($(this).attr('href'), { trigger: true });
   });
 
-  Backbone.history.start({ pushState: true, root: '/photo_gallery/' });
+  Backbone.history.start({ root: '/photo_gallery/' });
 });
