@@ -48,6 +48,23 @@ app.Router = Backbone.Router.extend({
 app.PhotoBrowser = Backbone.View.extend({
   el: '#content',
 
+  events: {
+    'keyup #search-captions': 'setSearchTerm'
+  },
+
+  initialize: function () {
+    this.searchTerm = '';
+    this.matchingPhotos = app.photos.clone();
+  },
+
+  filterPhotos: function () {
+    var term = this.searchTerm.toLowerCase();
+    var photos = app.photos.filter(function (photo) {
+      return _.includes(photo.get('caption').toLowerCase(), term);
+    });
+    this.matchingPhotos.reset(photos);
+  },
+
   render: function () {
     this.$el.html(app.template('photo-browser'));
     this.renderThumbnails();
@@ -57,9 +74,15 @@ app.PhotoBrowser = Backbone.View.extend({
   renderThumbnails: function () {
     this.$('#thumbnails').empty();
     var view = this;
-    app.photos.each(function (photo) {
+    this.matchingPhotos.each(function (photo) {
       view.$('#thumbnails').append(new app.ThumbnailView({ model: photo }).render().$el);
     });
+  },
+
+  setSearchTerm: function () {
+    this.searchTerm = _.trim(this.$('#search-captions').val());
+    this.filterPhotos();
+    this.renderThumbnails();
   }
 });
 
