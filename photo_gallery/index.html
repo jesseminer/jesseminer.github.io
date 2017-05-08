@@ -22,19 +22,19 @@
         </p>
         <div>
           <h3>Albums</h3>
-          <div id="search_albums">
-            <a href="javascript:;" onclick="$('input', '#search_albums').prop('checked', true); searchPhotos();">All</a> |
-            <a href="javascript:;" onclick="$('input', '#search_albums').prop('checked', false); searchPhotos();">None</a>
+          <div id="search-albums">
+            <a class="all-albums" href="#">All</a> |
+            <a class="no-albums" href="#">None</a>
             {{#each albums}}
               <div>
-                <label for="album-{{id}}">
-                  <input id="album-{{id}}" type="checkbox" checked="checked"> {{name}}
+                <label>
+                  <input type="checkbox" value="{{id}}" checked="checked"> {{name}}
                 </label>
               </div>
             {{/each}}
             <div>
-              <label for="album-0">
-                <input id="album-0" type="checkbox" checked="checked"> Loose photos
+              <label>
+                <input type="checkbox" value="0" checked="checked"> Loose photos (no album)
               </label>
             </div>
           </div>

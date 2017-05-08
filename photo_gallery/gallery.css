@@ -69,4 +69,4 @@ a img { border: none; }
 .album { padding: 3px 8px; cursor: pointer; list-style: none; border-bottom: 1px solid #aaa; overflow: hidden; }
 .album:hover, .album.active { background-color: #bbb; }
 
-#search_albums a { outline: none; }
+#search-albums a { outline: none; }

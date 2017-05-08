@@ -8,26 +8,26 @@ app.albums = new Backbone.Collection([
 ]);
 
 app.photos = new Backbone.Collection([
-  { id: 1, caption: 'Luna' },
-  { id: 2, caption: 'shiny' },
-  { id: 4, caption: 'Inca' },
-  { id: 5, caption: 'Kira' },
-  { id: 6, caption: '' },
-  { id: 7, caption: '' },
-  { id: 8, caption: 'Ziggy' },
-  { id: 9, caption: 'depth of field' },
-  { id: 10, caption: '' },
-  { id: 11, caption: '' },
-  { id: 12, caption: '' },
-  { id: 13, caption: '' },
-  { id: 14, caption: 'sweet' },
-  { id: 15, caption: '' },
-  { id: 16, caption: 'green circles yay' },
-  { id: 24, caption: 'Taughannock Falls' },
-  { id: 25, caption: 'creek bed' },
-  { id: 26, caption: '' },
-  { id: 27, caption: '' },
-  { id: 28, caption: 'space shuttle' }
+  { id: 1, caption: 'Luna', albums: [1] },
+  { id: 2, caption: 'shiny', albums: [4] },
+  { id: 4, caption: 'Inca', albums: [1] },
+  { id: 5, caption: 'Kira', albums: [1] },
+  { id: 6, caption: '', albums: [4] },
+  { id: 7, caption: '', albums: [4] },
+  { id: 8, caption: 'Ziggy', albums: [1] },
+  { id: 9, caption: 'depth of field', albums: [2] },
+  { id: 10, caption: '', albums: [2] },
+  { id: 11, caption: '', albums: [2] },
+  { id: 12, caption: '', albums: [2] },
+  { id: 13, caption: '', albums: [2] },
+  { id: 14, caption: 'sweet', albums: [0] },
+  { id: 15, caption: '', albums: [0] },
+  { id: 16, caption: 'green circles yay', albums: [0] },
+  { id: 24, caption: 'Taughannock Falls', albums: [3, 4] },
+  { id: 25, caption: 'creek bed', albums: [3] },
+  { id: 26, caption: '', albums: [3, 4] },
+  { id: 27, caption: '', albums: [0] },
+  { id: 28, caption: 'space shuttle', albums: [0] }
 ]);
 
 app.Router = Backbone.Router.extend({
@@ -49,24 +49,36 @@ app.PhotoBrowser = Backbone.View.extend({
   el: '#content',
 
   events: {
-    'keyup #search-captions': 'setSearchTerm'
+    'keyup #search-captions': 'setSearchTerm',
+    'click .all-albums': 'selectAllAlbums',
+    'click .no-albums': 'deselectAllAlbums',
+    'change #search-albums input': 'setAlbums'
   },
 
   initialize: function () {
     this.searchTerm = '';
+    this.albumIds = app.albums.pluck('id');
     this.matchingPhotos = app.photos.clone();
+  },
+
+  deselectAllAlbums: function (e) {
+    e.preventDefault();
+    this.$('#search-albums input').prop('checked', false);
+    this.setAlbums();
   },
 
   filterPhotos: function () {
     var term = this.searchTerm.toLowerCase();
+    var albumIds = this.albumIds;
     var photos = app.photos.filter(function (photo) {
-      return _.includes(photo.get('caption').toLowerCase(), term);
+      return _.includes(photo.get('caption').toLowerCase(), term) &&
+        _.intersection(photo.get('albums'), albumIds).length;
     });
     this.matchingPhotos.reset(photos);
   },
 
   render: function () {
-    this.$el.html(app.template('photo-browser', { searchTerm: this.searchTerm }));
+    this.$el.html(app.template('photo-browser', { albums: app.albums.toJSON(), searchTerm: this.searchTerm }));
     this.renderThumbnails();
     return this;
   },
@@ -77,6 +89,20 @@ app.PhotoBrowser = Backbone.View.extend({
     this.matchingPhotos.each(function (photo) {
       view.$('#thumbnails').append(new app.ThumbnailView({ model: photo }).render().$el);
     });
+  },
+
+  selectAllAlbums: function (e) {
+    e.preventDefault();
+    this.$('#search-albums input').prop('checked', true);
+    this.setAlbums();
+  },
+
+  setAlbums: function () {
+    this.albumIds = this.$('#search-albums :checkbox:checked').map(function () {
+      return parseInt(this.value);
+    }).get();
+    this.filterPhotos();
+    this.renderThumbnails();
   },
 
   setSearchTerm: function () {
