@@ -37,7 +37,7 @@ app.Router = Backbone.Router.extend({
   },
 
   photoBrowser: function () {
-    new app.PhotoBrowser().render();
+    app.photoBrowser.render();
   },
 
   showPhoto: function (id) {
@@ -66,7 +66,7 @@ app.PhotoBrowser = Backbone.View.extend({
   },
 
   render: function () {
-    this.$el.html(app.template('photo-browser'));
+    this.$el.html(app.template('photo-browser', { searchTerm: this.searchTerm }));
     this.renderThumbnails();
     return this;
   },
@@ -109,6 +109,7 @@ app.template = function (id, data) {
 };
 
 $(function() {
+  app.photoBrowser = new app.PhotoBrowser();
   app.router = new app.Router();
 
   $('body').on('click', 'a.js-route', function (e) {
