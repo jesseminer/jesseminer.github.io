@@ -1,5 +1,20 @@
 window.app = {};
 
+app.Photo = Backbone.Model.extend({
+  matchesCaption: function (term) {
+    return _.includes(this.get('caption').toLowerCase(), term);
+  },
+
+  matchesAlbum: function (albumIds) {
+    var thisAlbums = this.get('albums');
+    return _.intersection(thisAlbums, albumIds).length || (thisAlbums.length === 0 && _.includes(albumIds, 0));
+  }
+});
+
+app.Photos = Backbone.Collection.extend({
+  model: app.Photo
+});
+
 app.albums = new Backbone.Collection([
   { id: 1, name: 'Cats' },
   { id: 2, name: 'Computer Graphics' },
@@ -7,7 +22,7 @@ app.albums = new Backbone.Collection([
   { id: 4, name: 'Winter' }
 ]);
 
-app.photos = new Backbone.Collection([
+app.photos = new app.Photos([
   { id: 1, caption: 'Luna', albums: [1] },
   { id: 2, caption: 'shiny', albums: [4] },
   { id: 4, caption: 'Inca', albums: [1] },
@@ -58,6 +73,7 @@ app.PhotoBrowser = Backbone.View.extend({
   initialize: function () {
     this.searchTerm = '';
     this.albumIds = app.albums.pluck('id');
+    this.albumIds.push(0);
     this.matchingPhotos = app.photos.clone();
   },
 
@@ -71,8 +87,7 @@ app.PhotoBrowser = Backbone.View.extend({
     var term = this.searchTerm.toLowerCase();
     var albumIds = this.albumIds;
     var photos = app.photos.filter(function (photo) {
-      return _.includes(photo.get('caption').toLowerCase(), term) &&
-        _.intersection(photo.get('albums'), albumIds).length;
+      return photo.matchesCaption(term) && photo.matchesAlbum(albumIds);
     });
     this.matchingPhotos.reset(photos);
   },
