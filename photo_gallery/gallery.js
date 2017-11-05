@@ -1,6 +1,10 @@
 window.app = {};
 
 app.Photo = Backbone.Model.extend({
+  imagePath: function () {
+    return 'images/photos/image' + this.id + '.jpg';
+  },
+
   matchesCaption: function (term) {
     return _.includes(this.get('caption').toLowerCase(), term);
   },
@@ -12,7 +16,13 @@ app.Photo = Backbone.Model.extend({
 });
 
 app.Photos = Backbone.Collection.extend({
-  model: app.Photo
+  model: app.Photo,
+
+  byAlbum: function (albumId) {
+    return this.filter(function (photo) {
+      return _.includes(photo.get('albums'), albumId);
+    });
+  }
 });
 
 app.albums = new Backbone.Collection([
@@ -79,7 +89,11 @@ app.AlbumViewer = Backbone.View.extend({
   },
 
   render: function () {
-    this.$el.html(app.template('album-viewer', { albums: app.albums.toJSON() }));
+    var albums = app.albums.toJSON();
+    albums.forEach(function (album) {
+      album.numPhotos = app.photos.byAlbum(album.id).length;
+    });
+    this.$el.html(app.template('album-viewer', { albums: albums }));
     this.$('.album-list li').first().click();
     return this;
   },
@@ -162,7 +176,9 @@ app.PhotoView = Backbone.View.extend({
   el: '#content',
 
   render: function () {
-    this.$el.html(app.template('photo', this.model.toJSON()));
+    var data = this.model.toJSON();
+    data.imagePath = this.model.imagePath();
+    this.$el.html(app.template('photo', data));
     return this;
   }
 });

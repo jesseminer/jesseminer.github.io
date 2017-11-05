@@ -18,7 +18,9 @@ a img { border: none; }
 
 .center { text-align: center; }
 .flex { display: flex; }
+.gray { color: #999; }
 .margin-top { margin-top: 10px; }
+.small { font-size: 85%; letter-spacing: 0.5px; }
 
 #banner { padding: 14px 10px; font: 44px georgia, serif; background-image: url('images/banner.jpg'); }
 #banner a { color: #000; }
@@ -37,7 +39,6 @@ a img { border: none; }
 }
 
 #left_sidebar {
-  line-height: 150%;
   margin-right: 20px;
   width: 25%;
 }
@@ -45,6 +46,9 @@ a img { border: none; }
   font-size: 1.1em;
   padding: 6px;
   width: 100%;
+}
+#search-albums {
+  line-height: 150%;
 }
 #search-albums a {
   outline: none;

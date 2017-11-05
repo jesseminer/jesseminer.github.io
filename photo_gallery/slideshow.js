@@ -8,9 +8,7 @@ function Slideshow() {
   this.delay = 3000;
 
   this.render = function(selector, albumId) {
-    this.slides = app.photos.toJSON().filter(function (photo) {
-      return _.includes(photo.albums, albumId);
-    });
+    this.slides = app.photos.byAlbum(albumId);
 
     var div = $(selector);
     if (this.slides.length === 0) {
@@ -52,9 +50,8 @@ function Slideshow() {
   this.changeImg = function(i) {
     if (i < 0) i = this.slides.length - 1;
     if (i >= this.slides.length) i = 0;
-    var path = this.img.attr('src');
-    this.img.attr('src', path.substring(0, path.lastIndexOf('/') + 1) +'image'+ this.slides[i].id +'.jpg');
-    this.caption.html(this.slides[i].caption);
+    this.img.attr('src', this.slides[i].imagePath());
+    this.caption.html(this.slides[i].get('caption'));
     this.index = i;
   }
 
@@ -62,15 +59,13 @@ function Slideshow() {
     this.playing = 0;
     clearTimeout(this.timer);
     this.img.stop().css('opacity', 1);
-    var path = this.playpause.attr('src');
-    this.playpause.attr('src', path.substring(0, path.lastIndexOf('/') + 1) + "play.jpg");
+    this.playpause.attr('src', 'images/slideshow_controls/play.jpg');
   }
   
   this.play = function() {
     if (!this.playing) {
       this.playing = 1;
-      var path = this.playpause.attr('src');
-      this.playpause.attr('src', path.substring(0, path.lastIndexOf('/') + 1) + "pause.jpg");
+      this.playpause.attr('src', 'images/slideshow_controls/pause.jpg');
     }    
     this.timer = setTimeout(this.advance.bind(this), this.delay);
   }

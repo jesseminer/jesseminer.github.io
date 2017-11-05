@@ -19,7 +19,11 @@
       <div id="left_sidebar">
         <ul class="album-list">
           {{#each albums}}
-            <li data-id="{{id}}">{{name}}</li>
+            <li data-id="{{id}}">
+              {{name}}
+              <br>
+              <span class="small gray">{{numPhotos}} photos</span>
+            </li>
           {{/each}}
         </ul>
       </div>
@@ -64,14 +68,14 @@
       <a class="js-route" href="">Back to All Photos</a>
     </p>
     <div class="center">
-      <img class="full-image" src="images/photos/image{{id}}.jpg">
+      <img class="full-image" src="{{imagePath}}">
       <div class="margin-top">{{caption}}</div>
     </div>
   </script>
 
   <script type="text/html" id="slideshow-tmpl">
     <div class="slideshow-image-wrapper">
-      <img src="images/photos/" alt="Image" />
+      <img alt="Image" />
     </div>
     <p class="slideshow-caption margin-top"></p>
     <div class="slideshow-controls">
