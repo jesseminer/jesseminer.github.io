@@ -6,14 +6,8 @@ function Slideshow() {
   this.fading = true;
   this.fadeOutTime = 1000;
   this.fadeInTime = 1500;
-  this.minOpacity = 0;
-  
   this.delay = 3000;
-  this.captions = true;
-  this.showControls = true;
-  this.autoplay = false;
-  this.scale = false;
-  
+
   this.init = function(selector, aid) {
     this.el = $(selector);
     this.aid = aid;
@@ -39,8 +33,6 @@ function Slideshow() {
     this.controls.show();
     this.imgarea.css('height', this.imgarea.width() * 0.6);
     this.changeImg(0);
-    if (!this.showControls) this.controls.hide();
-    if (this.autoplay) this.play();
     this.attachEvents();
   }
 
@@ -65,25 +57,24 @@ function Slideshow() {
   this.changeImg = function(i) {
     if (i < 0) i = this.slides.length - 1;
     if (i >= this.slides.length) i = 0;
-    path = this.img.attr('src');
+    var path = this.img.attr('src');
     this.img.attr('src', path.substring(0, path.lastIndexOf('/') + 1) +'image'+ this.slides[i].id +'.jpg');
-    if (this.captions) this.caption.html(this.slides[i].caption);
+    this.caption.html(this.slides[i].caption);
     this.index = i;
   }
 
   this.pause = function() {
     this.playing = 0;
     clearTimeout(this.timer);
-    this.img.stop();
-    this.img.css('opacity', 1);
-    path = this.playpause.attr('src');
+    this.img.stop().css('opacity', 1);
+    var path = this.playpause.attr('src');
     this.playpause.attr('src', path.substring(0, path.lastIndexOf('/') + 1) + "play.jpg");
   }
   
   this.play = function() {
     if (!this.playing) {
       this.playing = 1;
-      path = this.playpause.attr('src');
+      var path = this.playpause.attr('src');
       this.playpause.attr('src', path.substring(0, path.lastIndexOf('/') + 1) + "pause.jpg");
     }    
     this.timer = setTimeout(this.advance.bind(this), this.delay);
@@ -98,7 +89,7 @@ function Slideshow() {
   }
     
   this.fadeOut = function() {
-    this.img.fadeTo(this.fadeOutTime, this.minOpacity);
+    this.img.fadeTo(this.fadeOutTime, 0);
     this.timer = setTimeout(this.fadeIn.bind(this), this.fadeOutTime);
   }
   
