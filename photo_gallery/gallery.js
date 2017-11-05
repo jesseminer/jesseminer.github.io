@@ -48,15 +48,30 @@ app.photos = new app.Photos([
 app.Router = Backbone.Router.extend({
   routes: {
     '': 'photoBrowser',
+    'albums': 'albumViewer',
     'photos/:id': 'showPhoto'
   },
 
+  albumViewer: function () {
+    app.highlightNav('albums');
+    new app.AlbumViewer().render();
+  },
+
   photoBrowser: function () {
+    app.highlightNav('');
     app.photoBrowser.render();
   },
 
   showPhoto: function (id) {
     new app.PhotoView({ model: app.photos.get(id) }).render();
+  }
+});
+
+app.AlbumViewer = Backbone.View.extend({
+  el: '#content',
+
+  render: function () {
+    this.$el.html(app.template('album-viewer', { albums: app.albums.toJSON() }));
   }
 });
 
@@ -144,6 +159,11 @@ app.ThumbnailView = Backbone.View.extend({
     return this;
   }
 });
+
+app.highlightNav = function (href) {
+  $('#nav a').removeClass('current');
+  $('#nav [href="' + href + '"]').addClass('current');
+};
 
 app.template = function (id, data) {
   return Handlebars.compile($('#' + id + '-tmpl').html())(data);
