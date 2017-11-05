@@ -71,7 +71,7 @@ a img { border: none; }
   padding: 10px;
 }
 .album-list li:hover, .album-list li.active {
-  background-color: #ddd;
+  background-color: #f0f0f0;
 }
 
 .slideshow-image-wrapper img {

@@ -1,5 +1,4 @@
 function Slideshow() {
-  this.aid = 0;
   this.index = 0;
   this.timer;
   this.playing = 0;
@@ -8,29 +7,25 @@ function Slideshow() {
   this.fadeInTime = 1500;
   this.delay = 3000;
 
-  this.init = function(selector, aid) {
-    this.el = $(selector);
-    this.aid = aid;
-    this.slides = app.photos.toJSON();
-    this.display();
-  }
+  this.render = function(selector, albumId) {
+    this.slides = app.photos.toJSON().filter(function (photo) {
+      return _.includes(photo.albums, albumId);
+    });
 
-  this.display = function() {
-    var div = this.el;
+    var div = $(selector);
+    if (this.slides.length === 0) {
+      div.html('<strong>This album is empty.</strong>');
+      return;
+    }
+
     div.html(app.template('slideshow'));
-
     this.imgarea = div.find('.slideshow-image-wrapper');
     this.img = this.imgarea.find('img');
     this.caption = div.find('.slideshow-caption');
     this.controls = div.find('.slideshow-controls');
     this.playpause = div.find('.play-or-pause');
 
-    if (this.slides.length == 0) {
-      div.html('\n<p style="text-align:left">'+ this.optionsHtml() +'<b>This album is empty.</b></p>\n');
-      return;
-    }
     this.pause();
-    this.controls.show();
     this.imgarea.css('height', this.imgarea.width() * 0.6);
     this.changeImg(0);
     this.attachEvents();

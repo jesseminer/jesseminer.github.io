@@ -54,7 +54,7 @@ app.Router = Backbone.Router.extend({
 
   albumViewer: function () {
     app.highlightNav('albums');
-    new app.AlbumViewer().render();
+    app.albumViewer.render();
   },
 
   photoBrowser: function () {
@@ -70,9 +70,24 @@ app.Router = Backbone.Router.extend({
 app.AlbumViewer = Backbone.View.extend({
   el: '#content',
 
+  events: {
+    'click .album-list li': 'selectAlbum'
+  },
+
+  initialize: function () {
+    this.slideshow = new Slideshow();
+  },
+
   render: function () {
     this.$el.html(app.template('album-viewer', { albums: app.albums.toJSON() }));
-    new Slideshow().init('#ss-container', 1);
+    this.$('.album-list li').first().click();
+    return this;
+  },
+
+  selectAlbum: function (e) {
+    this.$('.album-list li').removeClass('active');
+    $(e.currentTarget).addClass('active');
+    this.slideshow.render('#ss-container', $(e.currentTarget).data('id'));
   }
 });
 
@@ -172,6 +187,7 @@ app.template = function (id, data) {
 
 $(function() {
   app.photoBrowser = new app.PhotoBrowser();
+  app.albumViewer = new app.AlbumViewer();
   app.router = new app.Router();
 
   $('body').on('click', 'a.js-route', function (e) {
