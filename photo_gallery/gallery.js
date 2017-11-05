@@ -144,10 +144,10 @@ app.PhotoBrowser = Backbone.View.extend({
   },
 
   renderThumbnails: function () {
-    this.$('#thumbnails').empty();
+    this.$('.thumbnails').empty();
     var view = this;
     this.matchingPhotos.each(function (photo) {
-      view.$('#thumbnails').append(new app.ThumbnailView({ model: photo }).render().$el);
+      view.$('.thumbnails').append(new app.ThumbnailView({ model: photo }).render().$el);
     });
   },
 
