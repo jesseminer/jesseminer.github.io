@@ -1,7 +1,7 @@
 function Slideshow() {
   this.index = 0;
   this.timer;
-  this.playing = 0;
+  this.playing = false;
   this.fading = true;
   this.fadeOutTime = 1000;
   this.fadeInTime = 1500;
@@ -56,36 +56,35 @@ function Slideshow() {
   }
 
   this.pause = function() {
-    this.playing = 0;
+    this.playing = false;
     clearTimeout(this.timer);
     this.img.stop().css('opacity', 1);
     this.playpause.attr('src', 'images/slideshow_controls/play.jpg');
   }
   
   this.play = function() {
-    if (!this.playing) {
-      this.playing = 1;
-      this.playpause.attr('src', 'images/slideshow_controls/pause.jpg');
-    }    
-    this.timer = setTimeout(this.advance.bind(this), this.delay);
+    this.playing = true;
+    this.playpause.attr('src', 'images/slideshow_controls/pause.jpg');
+    this.setTransitionTimer();
   }
   
   this.advance = function() {
-    if (this.fading) this.fadeOut();
+    if (this.fading) this.fadeTransition();
     else {
       this.changeImg(this.index + 1);
-      this.play();
+      this.setTransitionTimer();
     }
   }
-    
-  this.fadeOut = function() {
-    this.img.fadeTo(this.fadeOutTime, 0);
-    this.timer = setTimeout(this.fadeIn.bind(this), this.fadeOutTime);
+
+  this.setTransitionTimer = function () {
+    this.timer = setTimeout(this.advance.bind(this), this.delay);
   }
-  
-  this.fadeIn = function() {
-    this.changeImg(this.index + 1);
-    this.img.fadeTo(this.fadeInTime, 1);
-    this.timer = setTimeout(this.play.bind(this), this.fadeInTime);
+
+  this.fadeTransition = function () {
+    var fadeInNextImage = function () {
+      this.changeImg(this.index + 1);
+      this.img.fadeTo(this.fadeInTime, 1, this.setTransitionTimer.bind(this));
+    };
+    this.img.fadeTo(this.fadeOutTime, 0, fadeInNextImage.bind(this));
   }
 }
