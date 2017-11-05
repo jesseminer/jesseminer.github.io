@@ -1,10 +1,9 @@
-function Slideshow(varName) {
-  this.name = varName;
+function Slideshow() {
   this.aid = 0;
   this.index = 0;
   this.timer;
   this.playing = 0;
-  this.fading = 0;
+  this.fading = true;
   this.fadeOutTime = 1000;
   this.fadeInTime = 1500;
   this.minOpacity = 0;
@@ -15,14 +14,15 @@ function Slideshow(varName) {
   this.autoplay = false;
   this.scale = false;
   
-  this.init = function(aid) {
+  this.init = function(selector, aid) {
+    this.el = $(selector);
     this.aid = aid;
     this.slides = app.photos.toJSON();
-    this.display(this.name + '_container');
+    this.display();
   }
 
-  this.display = function(parentId) {
-    var div = $('#' + parentId);
+  this.display = function() {
+    var div = this.el;
     div.html(app.template('slideshow'));
 
     this.imgarea = div.find('.slideshow-image-wrapper');
@@ -57,6 +57,9 @@ function Slideshow(varName) {
       if (self.playing) { self.pause(); }
       self.changeImg(self.index + 1);
     });
+    $('#fading').on('change', function () {
+      self.fading = $(this).prop('checked');
+    });
   };
 
   this.changeImg = function(i) {
@@ -83,7 +86,7 @@ function Slideshow(varName) {
       path = this.playpause.attr('src');
       this.playpause.attr('src', path.substring(0, path.lastIndexOf('/') + 1) + "pause.jpg");
     }    
-    this.timer = setTimeout(this.name +".advance()", this.delay);
+    this.timer = setTimeout(this.advance.bind(this), this.delay);
   }
   
   this.advance = function() {
@@ -96,12 +99,12 @@ function Slideshow(varName) {
     
   this.fadeOut = function() {
     this.img.fadeTo(this.fadeOutTime, this.minOpacity);
-    this.timer = setTimeout(this.name +".fadeIn();", this.fadeOutTime);
+    this.timer = setTimeout(this.fadeIn.bind(this), this.fadeOutTime);
   }
   
   this.fadeIn = function() {
     this.changeImg(this.index + 1);
     this.img.fadeTo(this.fadeInTime, 1);
-    this.timer = setTimeout(this.name +".play()", this.fadeInTime);
+    this.timer = setTimeout(this.play.bind(this), this.fadeInTime);
   }
 }
