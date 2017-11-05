@@ -73,3 +73,12 @@ a img { border: none; }
 .album-list li:hover, .album-list li.active {
   background-color: #ddd;
 }
+
+.slideshow_container {
+  padding: 20px 20px 5px 20px;
+  text-align: center;
+}
+.slideshow_container img {
+  max-height: 95%;
+  max-width: 100%;
+}

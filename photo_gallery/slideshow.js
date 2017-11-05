@@ -27,33 +27,24 @@ function Slideshow(varName) {
 
   this.html = function() {
     return '<p style="text-align:left">'+ this.optionsHtml() +'Photo <span>0</span> of <span></span></p>\n' +
-           '<p><img src="photos/" alt="Image" /><br /><span></span></p>\n' +
+           '<p><img src="images/photos/" alt="Image" /><br /><span></span></p>\n' +
            '<p>\n' +
-           '  <img title="Previous" onclick="'+ this.name +'.useControls(-1)" src="buttons/previous.jpg" alt="prev" />\n' +
-           '  <img title="Play/Pause" onclick="'+ this.name +'.useControls(0)" src="buttons/play.jpg" alt="playpause" />\n' +
-           '  <img title="Next" onclick="'+ this.name +'.useControls(1)" src="buttons/next.jpg" alt="next" />\n' +
+           '  <img title="Previous" onclick="'+ this.name +'.useControls(-1)" src="images/slideshow_controls/previous.jpg" alt="prev" />\n' +
+           '  <img title="Play/Pause" onclick="'+ this.name +'.useControls(0)" src="images/slideshow_controls/play.jpg" alt="playpause" />\n' +
+           '  <img title="Next" onclick="'+ this.name +'.useControls(1)" src="images/slideshow_controls/next.jpg" alt="next" />\n' +
            '</p>\n' +
            '<p id="start_'+ this.name +'"><input type="button" onclick="this.onclick=\'\'; $(this.parentNode).fadeOut(\'slow\'); '+this.name+'.play();" value="Start Slideshow" /></p>\n';
   }
   
   this.init = function(aid) {
     this.aid = aid;
-    var cb = function(json) {
-      var obj = eval(varName);
-      obj.slides = json;
-      for (var i = 0; i < obj.slides.length; i++) {
-        obj.slides[i].caption = obj.slides[i].caption.replace(/%3C/g, '&lt;').replace(/%3E/g, '&gt;').replace(/%26/g, '&amp;');
-      }
-
-      obj.display(obj.name + '_container');
-    }
-    $.getJSON('ajax/loadAlbum.php?aid=' + aid, cb);
+    this.slides = app.photos.toJSON();
+    this.display(this.name + '_container');
   }
 
   this.display = function(parentId) {
     div = $('#' + parentId);
     div.html(this.html());
-    //div.css('width', Math.max(this.width, 250) + 'px');
 
     this.slidenum = $('span:nth-child(2)', div);
     this.totalslides = $('span:nth-child(3)', div);
@@ -86,22 +77,11 @@ function Slideshow(varName) {
   this.changeImg = function(i) {
     if (i < 0) i = this.slides.length - 1;
     if (i >= this.slides.length) i = 0;
-    dims = this.getDimensions(parseInt(this.slides[i].width), parseInt(this.slides[i].height));
     path = this.img.attr('src');
-    this.img.attr('src', path.substring(0, path.lastIndexOf('/') + 1) +'image'+ this.slides[i].pid +'.jpg');
-    this.img.css({ width: dims[0], height: dims[1] });
+    this.img.attr('src', path.substring(0, path.lastIndexOf('/') + 1) +'image'+ this.slides[i].id +'.jpg');
     if (this.captions) this.caption.html(this.slides[i].caption);
     this.slidenum.html(i + 1);
     this.index = i;
-  }
-
-  this.getDimensions = function(w, h) {
-    var ratio = 1;
-    if (w > this.width || h > this.height || (this.scale && w < this.width && h < this.height))
-      ratio = Math.min(this.width / w, this.height / h);
-    newW = Math.round(w * ratio);
-    newH = Math.round(h * ratio);
-    return [newW, newH];
   }
 
   this.useControls = function(arg) {

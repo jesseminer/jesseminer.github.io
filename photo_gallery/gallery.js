@@ -72,6 +72,8 @@ app.AlbumViewer = Backbone.View.extend({
 
   render: function () {
     this.$el.html(app.template('album-viewer', { albums: app.albums.toJSON() }));
+    window.ss = new Slideshow('ss');
+    ss.init(1);
   }
 });
 
