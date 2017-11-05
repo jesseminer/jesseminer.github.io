@@ -24,7 +24,7 @@
         </ul>
       </div>
       <div style="width: 75%;">
-        <div id="ss_container" class="slideshow_container"></div>
+        <div id="ss_container" class="center"></div>
       </div>
     </div>
   </script>
@@ -66,6 +66,18 @@
     <div class="center">
       <img class="full-image" src="images/photos/image{{id}}.jpg">
       <div class="margin-top">{{caption}}</div>
+    </div>
+  </script>
+
+  <script type="text/html" id="slideshow-tmpl">
+    <div class="slideshow-image-wrapper">
+      <img src="images/photos/" alt="Image" />
+    </div>
+    <p class="slideshow-caption margin-top"></p>
+    <div class="slideshow-controls">
+      <img class="previous-image" title="Previous" src="images/slideshow_controls/previous.jpg" alt="prev" />
+      <img class="play-or-pause" title="Play/Pause" src="images/slideshow_controls/play.jpg" alt="playpause" />
+      <img class="next-image" title="Next" src="images/slideshow_controls/next.jpg" alt="next" />
     </div>
   </script>
 

@@ -74,11 +74,14 @@ a img { border: none; }
   background-color: #ddd;
 }
 
-.slideshow_container {
-  padding: 20px 20px 5px 20px;
-  text-align: center;
-}
-.slideshow_container img {
-  max-height: 95%;
+.slideshow-image-wrapper img {
+  max-height: 100%;
   max-width: 100%;
+}
+.slideshow-caption {
+  height: 1.5em;
+}
+.slideshow-controls img {
+  cursor: pointer;
+  padding: 0px 7px;
 }
