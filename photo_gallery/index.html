@@ -15,17 +15,19 @@
   <div id="content"></div>
 
   <script type="text/html" id="album-viewer-tmpl">
-    <div id="left_sidebar">
-      <ul>
-        {{#each albums}}
-          <li class="album">{{name}}</li>
-        {{/each}}
-      </ul>
+    <div class="flex">
+      <div id="left_sidebar">
+        <ul class="album-list">
+          {{#each albums}}
+            <li>{{name}}</li>
+          {{/each}}
+        </ul>
+      </div>
     </div>
   </script>
 
   <script type="text/html" id="photo-browser-tmpl">
-    <div id="photo-browser">
+    <div class="flex">
       <div id="left_sidebar">
         <p>
           <input id="search-captions" type="text" placeholder="Search Captions" value="{{searchTerm}}" />

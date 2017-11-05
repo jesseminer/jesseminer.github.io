@@ -9,16 +9,15 @@ body {
   min-width: 600px;
 }
 
-h1 { margin-bottom: 25px; }
-h2 { font-size: 20px; font-weight: normal; border-bottom: 1px solid #393939; padding-bottom: 4px; }
 h3 { font-size: 16px; font-weight: normal; }
-p, ul, h2, form { margin-bottom: 15px; }
+p, ul { margin-bottom: 15px; }
 a { text-decoration: none; }
 a:hover { text-decoration: underline; }
 a:visited { color: #0000ff; }
 a img { border: none; }
 
 .center { text-align: center; }
+.flex { display: flex; }
 .margin-top { margin-top: 10px; }
 
 #banner { padding: 14px 10px; font: 44px georgia, serif; background-image: url('images/banner.jpg'); }
@@ -37,10 +36,6 @@ a img { border: none; }
   padding: 25px;
 }
 
-#photo-browser {
-  display: flex;
-}
-
 #left_sidebar {
   line-height: 150%;
   margin-right: 20px;
@@ -50,6 +45,9 @@ a img { border: none; }
   font-size: 1.1em;
   padding: 6px;
   width: 100%;
+}
+#search-albums a {
+  outline: none;
 }
 
 #thumbnails a {
@@ -66,7 +64,12 @@ a img { border: none; }
   padding: 6px;
 }
 
-.album { padding: 3px 8px; cursor: pointer; list-style: none; border-bottom: 1px solid #aaa; overflow: hidden; }
-.album:hover, .album.active { background-color: #bbb; }
-
-#search-albums a { outline: none; }
+.album-list li {
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+  list-style: none;
+  padding: 10px;
+}
+.album-list li:hover, .album-list li.active {
+  background-color: #ddd;
+}
