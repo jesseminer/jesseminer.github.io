@@ -8,6 +8,7 @@ function Slideshow() {
   this.delay = 3000;
 
   this.render = function(selector, albumId) {
+    if (this.playing) { this.pause(); }
     this.slides = app.photos.byAlbum(albumId);
 
     var div = $(selector);
@@ -23,7 +24,6 @@ function Slideshow() {
     this.controls = div.find('.slideshow-controls');
     this.playpause = div.find('.play-or-pause');
 
-    this.pause();
     this.imgarea.css('height', this.imgarea.width() * 0.6);
     this.changeImg(0);
     this.attachEvents();
