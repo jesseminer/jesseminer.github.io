@@ -102,5 +102,16 @@ games = [
   g("Gears of War 4", "10/11/2016", 9),
   g("Battlefield 1", "10/21/2016", 3),
   g("Titanfall 2", "10/28/2016", 0),
-  g("Call of Duty: Infinite Warfare", "11/4/2016", 4)
+  g("Call of Duty: Infinite Warfare", "11/4/2016", 4),
+
+  g("Halo Wars 2", "2/21/2017", 10),
+  g("Mass Effect: Andromeda", "3/21/2017", 11),
+  g("Destiny 2", "9/6/2017", 0),
+  g("Assassin's Creed Origins", "10/27/2017", 2),
+  g("Call of Duty: WWII", "11/3/2017", 4),
+
+  g("Assassin's Creed Odyssey", "10/5/2018", 2),
+  g("Call of Duty: Black Ops 4", "10/12/2018", 4),
+  g("Fallout 76", "11/14/2018", 8),
+  g("Battlefield V", "11/20/2018", 3)
 ];
