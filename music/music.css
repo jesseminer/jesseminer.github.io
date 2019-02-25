@@ -1,0 +1,46 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #eeeeee;
+  font-family: sans-serif;
+  font-size: 18px;
+}
+
+.container {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 2px 2px 5px #cccccc;
+  margin: 60px auto;
+  max-width: 700px;
+  padding: 1em;
+}
+
+audio {
+  border-radius: 4px;
+  width: 100%;
+}
+
+.current-song {
+  margin-top: 1em;
+}
+
+hr {
+  border: 1px solid #dddddd;
+  border-width: 1px 0 0 0;
+  margin: 1em 0;
+}
+
+.song-list {
+  width: 100%;
+}
+
+.song-row td {
+  padding: 0.2em 0;
+}
+
+.play-song {
+  cursor: pointer;
+  width: 18px;
+}
