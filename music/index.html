@@ -4,15 +4,17 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
   <title>Music</title>
+  <link type="text/css" rel="stylesheet" href="../utilities.css">
   <link type="text/css" rel="stylesheet" href="music.css">
 </head>
 
 <body>
   <div class="container">
-    <audio controls></audio>
-    <div class="current-song"></div>
-    <hr>
-    <table class="song-list"></table>
+    <div class="player">
+      <audio class="margin-bottom" controls></audio>
+      <div class="current-song text-center"></div>
+    </div>
+    <table class="song-list" cellspacing="0"></table>
   </div>
 
   <script type="text/javascript">
@@ -48,7 +50,15 @@
         app.songs.forEach(function (song) {
           var row = document.createElement('tr');
           row.classList.add('song-row');
-          row.innerHTML = '<td><img class="play-song" data-id="' + song.id + '" src="images/play.svg"></td><td>' + song.title + '</td><td>' + song.artist + '</td>';
+          row.innerHTML = `
+            <td>
+              <div class="flex-vertical-center">
+                <img class="play-song" data-id="${song.id}" src="images/play.svg">
+                <span class="margin-left">${song.title.substring(0, 40)}</span>
+              </div>
+            </td>
+            <td>${song.artist.substring(0, 40)}</td>
+          `;
           app.songList.appendChild(row);
         });
       }
