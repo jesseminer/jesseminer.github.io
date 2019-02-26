@@ -17,54 +17,23 @@
     <table class="song-list" cellspacing="0"></table>
   </div>
 
+  <script type="text/javascript" src="js/song_list_view.js"></script>
   <script type="text/javascript">
     window.app = {
       player: document.getElementsByTagName('audio')[0],
-      songList: document.querySelector('.song-list'),
-
-      addSongClickListener: function () {
-        app.songList.addEventListener('click', function (e) {
-          var btn = e.target;
-          if (!btn.classList.contains('play-song')) { return; }
-
-          var songId = parseInt(btn.getAttribute('data-id'));
-          var song = app.songs.find(function (s) {
-            return s.id === songId;
-          });
-          app.player.src = 'https://drive.google.com/uc?export=download&id=' + song.file_id;
-          app.player.play();
-          document.querySelector('.current-song').textContent = song.title;
-        });
-      },
+      songListView: new SongListView(),
 
       loadSongs: function () {
         fetch('https://jtunes.herokuapp.com/songs').then(function (response) {
           return response.json();
         }).then(function (songs) {
           app.songs = songs;
-          app.renderSongs();
-        });
-      },
-
-      renderSongs: function () {
-        app.songs.forEach(function (song) {
-          var row = document.createElement('tr');
-          row.classList.add('song-row');
-          row.innerHTML = `
-            <td>
-              <div class="flex-vertical-center">
-                <img class="play-song" data-id="${song.id}" src="images/play.svg">
-                <span class="margin-left">${song.title.substring(0, 40)}</span>
-              </div>
-            </td>
-            <td class="artist-name">${song.artist.substring(0, 40)}</td>
-          `;
-          app.songList.appendChild(row);
+          app.songListView.render();
         });
       }
     };
 
-    app.addSongClickListener();
+    app.songListView.addPlayButtonListener();
     app.loadSongs();
   </script>
 </body>
