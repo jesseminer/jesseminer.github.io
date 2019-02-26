@@ -69,3 +69,23 @@ audio {
   flex-shrink: 0;
   width: 18px;
 }
+
+@media screen and (max-width: 900px) {
+  .container {
+    margin: 0;
+  }
+
+  .player {
+    border-radius: 0;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  body {
+    font-size: 15px;
+  }
+
+  .artist-name {
+    display: none;
+  }
+}
