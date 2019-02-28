@@ -17,25 +17,9 @@
     <table class="song-list" cellspacing="0"></table>
   </div>
 
+  <script type="text/javascript" src="js/player_view.js"></script>
   <script type="text/javascript" src="js/song_list_view.js"></script>
-  <script type="text/javascript">
-    window.app = {
-      player: document.getElementsByTagName('audio')[0],
-      songListView: new SongListView(),
-
-      loadSongs: function () {
-        fetch('https://jtunes.herokuapp.com/songs').then(function (response) {
-          return response.json();
-        }).then(function (songs) {
-          app.songs = songs;
-          app.songListView.render();
-        });
-      }
-    };
-
-    app.songListView.addPlayButtonListener();
-    app.loadSongs();
-  </script>
+  <script type="text/javascript" src="js/app_init.js"></script>
 </body>
 
 </html>

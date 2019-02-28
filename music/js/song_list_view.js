@@ -6,13 +6,7 @@ SongListView = function () {
       var btn = e.target;
       if (!btn.classList.contains('play-song')) { return; }
 
-      var songId = parseInt(btn.getAttribute('data-id'));
-      var song = app.songs.find(function (s) {
-        return s.id === songId;
-      });
-      app.player.src = 'https://drive.google.com/uc?export=download&id=' + song.file_id;
-      app.player.play();
-      document.querySelector('.current-song').textContent = song.title;
+      app.playerView.playSong(parseInt(btn.getAttribute('data-id')));
     });
   };
 
