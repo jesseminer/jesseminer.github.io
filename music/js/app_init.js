@@ -10,4 +10,5 @@ fetch('https://jtunes.herokuapp.com/songs').then(function (response) {
 }).then(function (songs) {
   app.songs = songs;
   app.songListView.render();
+  app.playerView.playRandomSong();
 });

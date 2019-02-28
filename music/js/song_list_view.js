@@ -6,7 +6,11 @@ SongListView = function () {
       var btn = e.target;
       if (!btn.classList.contains('play-song')) { return; }
 
-      app.playerView.playSong(parseInt(btn.getAttribute('data-id')));
+      var songId = parseInt(btn.getAttribute('data-id'));
+      var song = app.songs.find(function (s) {
+        return s.id === songId;
+      });
+      app.playerView.playSong(song);
     });
   };
 
