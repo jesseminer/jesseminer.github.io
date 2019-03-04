@@ -12,18 +12,17 @@ body {
 }
 
 .container {
-  margin: 60px auto;
+  box-shadow: 0px 7px 7px #aaaaaa;
+  margin: 0 auto 60px auto;
   max-width: 900px;
 }
 
 .player {
   background-color: #337799;
-  border-radius: 8px 8px 0 0;
+  box-shadow: 0px 1px 6px #777777;
   padding: 2em 2em 1em 2em;
-}
-
-.player, .song-list {
-  box-shadow: 0px 7px 7px #aaaaaa;
+  position: sticky;
+  top: 0;
 }
 
 audio {
@@ -70,19 +69,13 @@ audio {
   width: 18px;
 }
 
-@media screen and (max-width: 900px) {
-  .container {
-    margin: 0;
-  }
-
-  .player {
-    border-radius: 0;
-  }
-}
-
 @media screen and (max-width: 600px) {
   body {
     font-size: 15px;
+  }
+
+  .container {
+    margin: 0;
   }
 
   .artist-name {
