@@ -11,6 +11,7 @@ PlayerView = function () {
     this.player.src = 'https://drive.google.com/uc?export=download&id=' + song.file_id;
     this.player.play();
     this.el.querySelector('.current-song').textContent = song.title;
+    document.title = song.title;
   };
 
   this.player.addEventListener('ended', this.playRandomSong.bind(this));
