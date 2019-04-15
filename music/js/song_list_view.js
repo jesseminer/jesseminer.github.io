@@ -4,7 +4,9 @@ SongListView = function () {
   this.addPlayButtonListener = function () {
     this.el.addEventListener('click', function (e) {
       var btn = e.target;
-      if (!btn.classList.contains('play-song')) { return; }
+      var clickedTriangle = btn.classList.contains('play-triangle');
+      if (!btn.classList.contains('play-song') && !clickedTriangle) { return; }
+      if (clickedTriangle) { btn = btn.parentElement; }
 
       var songId = parseInt(btn.getAttribute('data-id'));
       var song = app.songs.find(function (s) {
@@ -22,8 +24,10 @@ SongListView = function () {
       row.innerHTML = `
         <td>
           <div class="flex-vertical-center">
-            <img class="play-song" data-id="${song.id}" src="images/play.svg">
-            <span class="margin-left">${song.title.substring(0, 40)}</span>
+            <div class="play-song" data-id="${song.id}">
+              <div class="play-triangle"></div>
+            </div>
+            <span class="margin-left-sm">${song.title.substring(0, 40)}</span>
           </div>
         </td>
         <td class="artist-name">${song.artist.substring(0, 40)}</td>

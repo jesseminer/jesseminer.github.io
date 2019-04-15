@@ -6,7 +6,7 @@
 
 body {
   background-color: #dddddd;
-  font-family: sans-serif;
+  font-family: 'Noto Sans', sans-serif;
   font-size: 18px;
   letter-spacing: 0.8px;
 }
@@ -48,7 +48,7 @@ audio {
 
 .song-row td {
   border-top: 1px solid #eaeaea;
-  padding: 0.7em 0;
+  padding: 0.5em 0;
 }
 
 .song-row:first-child td {
@@ -56,7 +56,7 @@ audio {
 }
 
 .song-row td:first-child {
-  padding-left: 2em;
+  padding-left: 1.3em;
 }
 
 .song-row td:last-child {
@@ -64,9 +64,29 @@ audio {
 }
 
 .play-song {
+  align-items: center;
+  border: 2px solid #337799;
+  border-radius: 50%;
   cursor: pointer;
-  flex-shrink: 0;
-  width: 18px;
+  display: flex;
+  height: 32px;
+  justify-content: center;
+  padding-left: 3px;
+  visibility: hidden;
+  width: 32px;
+}
+
+.play-triangle {
+  border-color: transparent;
+  border-left-color: #337799;
+  border-style: solid;
+  border-width: 7px 0 7px 12px;
+  height: 0;
+  width: 0;
+}
+
+.song-row:hover .play-song {
+  visibility: visible;
 }
 
 @media screen and (max-width: 600px) {

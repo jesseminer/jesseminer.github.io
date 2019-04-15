@@ -3,6 +3,8 @@
   display: flex;
 }
 
+.margin-left-sm { margin-left: 0.5em; }
+
 .margin-top { margin-top: 1em; }
 .margin-right { margin-right: 1em; }
 .margin-bottom { margin-bottom: 1em; }
