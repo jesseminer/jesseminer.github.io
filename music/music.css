@@ -30,8 +30,23 @@ audio {
   width: 100%;
 }
 
+.current-song-search-container {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
 .current-song {
   color: #ffffff;
+}
+
+.search-box {
+  background-color: #225577;
+  border: none;
+  border-radius: 3px;
+  color: #ffffff;
+  font-size: 15px;
+  padding: 7px 10px;
 }
 
 .song-list {
@@ -96,6 +111,14 @@ audio {
 
   .container {
     margin: 0;
+  }
+
+  .current-song-search-container {
+    flex-direction: column;
+  }
+
+  .search-box {
+    margin-top: 0.5em;
   }
 
   .artist-name {

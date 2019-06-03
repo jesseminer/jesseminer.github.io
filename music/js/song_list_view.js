@@ -16,9 +16,26 @@ SongListView = function () {
     });
   };
 
-  this.render = function () {
+  this.addSearchListener = function () {
     var self = this;
-    app.songs.forEach(function (song) {
+    document.querySelector('.search-box').addEventListener('keyup', function (e) {
+      var query = this.value.toLowerCase();
+      if (query) {
+        var matchingSongs = app.songs.filter(function (song) {
+          var artistName = (song.artist || '').toLowerCase();
+          return song.title.toLowerCase().includes(query) || artistName.includes(query);
+        });
+        self.render(matchingSongs);
+      } else {
+        self.render(app.songs);
+      }
+    });
+  };
+
+  this.render = function (songs) {
+    var self = this;
+    this.el.innerHTML = '';
+    songs.forEach(function (song) {
       var row = document.createElement('tr');
       row.classList.add('song-row');
       row.innerHTML = `
@@ -30,7 +47,7 @@ SongListView = function () {
             <span class="margin-left-sm">${song.title.substring(0, 40)}</span>
           </div>
         </td>
-        <td class="artist-name">${song.artist.substring(0, 40)}</td>
+        <td class="artist-name">${(song.artist || '').substring(0, 40)}</td>
       `;
       self.el.appendChild(row);
     });
