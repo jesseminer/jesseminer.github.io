@@ -104,13 +104,10 @@ audio {
   visibility: visible;
 }
 
-@media screen and (max-width: 600px) {
-  body {
-    font-size: 15px;
-  }
-
+@media screen and (max-width: 1000px) {
   .container {
     margin: 0;
+    max-width: none;
   }
 
   .current-song-search-container {
