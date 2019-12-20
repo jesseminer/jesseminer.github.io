@@ -104,10 +104,9 @@ audio {
   visibility: visible;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 640px) {
   .container {
     margin: 0;
-    max-width: none;
   }
 
   .current-song-search-container {
