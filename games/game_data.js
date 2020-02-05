@@ -1,20 +1,20 @@
 months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
-series = ["", "Army of Two", "Assassin's Creed", "Battlefield", "Call of Duty", "Crackdown", "The Elder Scrolls", 
+series = ["", "Army of Two", "Assassin's Creed", "Battlefield", "Call of Duty", "Crackdown", "The Elder Scrolls",
           "Fable", "Fallout", "Gears of War", "Halo", "Mass Effect", "Medal of Honor", "BioShock"];
 
 games = [
   g("Halo: Combat Evolved", "11/15/2001", 10),
-  
+
   g("Fable", "9/14/2004", 7),
   g("Halo 2", "11/9/2004", 10),
-  
+
   g("Perfect Dark Zero", "11/17/2005", 0),
-  
+
   g("Ghost Recon Advanced Warfighter", "3/9/2006", 0),
   g("The Elder Scrolls IV: Oblivion", "3/20/2006", 6),
   g("Gears of War", "11/7/2006", 9),
-  
+
   g("Crackdown", "2/20/2007", 5),
   g("Ghost Recon Advanced Warfighter 2", "3/6/2007", 0),
   g("Forza Motorsport 2", "5/29/2007", 0),
@@ -24,21 +24,21 @@ games = [
   g("Call of Duty 4: Modern Warfare", "11/5/2007", 4),
   g("Assassin's Creed", "11/15/2007", 2),
   g("Mass Effect", "11/20/2007", 11),
-  
+
   g("Army of Two", "3/6/2008", 1),
   g("Battlefield: Bad Company", "6/23/2008", 3),
   g("Fable II", "10/21/2008", 7),
   g("Fallout 3", "10/28/2008", 8),
   g("Gears of War 2", "11/7/2008", 9),
   g("CoD: World at War", "11/10/2008", 4),
-  
+
   g("Halo Wars", "3/3/2009", 10),
   g("Halo 3: ODST", "9/22/2009", 10),
   g("Borderlands", "10/20/2009", 0),
   g("Forza Motorsport 3", "10/27/2009", 0),
   g("CoD: Modern Warfare 2", "11/10/2009", 4),
   g("Assassin's Creed 2", "11/17/2009", 2),
-  
+
   g("Army of Two: The 40th Day", "1/12/2010", 1),
   g("Mass Effect 2", "1/26/2010", 11),
   g("BioShock 2", "2/9/2010", 13),
@@ -51,7 +51,7 @@ games = [
   g("Fable III", "10/26/2010", 7),
   g("CoD: Black Ops", "11/9/2010", 4),
   g("Assassin's Creed: Brotherhood", "11/16/2010", 2),
-  
+
   g("Homefront", "3/15/2011", 0),
   g("Crysis 2", "3/22/2011", 0),
   g("Portal 2", "4/19/2011", 0),
@@ -62,7 +62,7 @@ games = [
   g("The Elder Scrolls V: Skyrim", "11/11/2011", 6),
   g("Assassin's Creed: Revelations", "11/15/2011", 2),
   g("Halo: Combat Evolved Anniversary", "11/15/2011", 10),
-  
+
   g("Mass Effect 3", "3/6/2012", 11),
   g("Borderlands 2", "9/18/2012", 0),
   g("Forza Horizon", "10/23/2012", 0),
@@ -92,6 +92,7 @@ games = [
   g("Dying Light", "1/27/2015", 0),
   g("Evolve", "2/10/2015", 0),
   g("Battlefield Hardline", "3/17/2015", 3),
+  g("Gears of War: Ultimate Edition", "8/25/2015", 9),
   g("Forza Motorsport 6", "9/15/2015", 0),
   g("Assassin's Creed Syndicate", "10/23/2015", 2),
   g("Halo 5: Guardians", "10/27/2015", 10),
@@ -107,11 +108,20 @@ games = [
   g("Halo Wars 2", "2/21/2017", 10),
   g("Mass Effect: Andromeda", "3/21/2017", 11),
   g("Destiny 2", "9/6/2017", 0),
+  g("Forza Motorsport 7", "10/3/2017", 0),
   g("Assassin's Creed Origins", "10/27/2017", 2),
   g("Call of Duty: WWII", "11/3/2017", 4),
 
+  g("Forza Horizon 4", "10/2/2018", 0),
   g("Assassin's Creed Odyssey", "10/5/2018", 2),
   g("Call of Duty: Black Ops 4", "10/12/2018", 4),
+  g("Red Dead Redemption 2", "10/26/2018", 0),
   g("Fallout 76", "11/14/2018", 8),
-  g("Battlefield V", "11/20/2018", 3)
+  g("Battlefield V", "11/20/2018", 3),
+
+  g("Apex Legends", "2/4/2019", 0),
+  g("Crackdown 3", "2/15/2019", 5),
+  g("Gears of War 5", "9/10/2019", 9),
+  g("Borderlands 3", "9/13/2019", 0),
+  g("Call of Duty: Modern Warfare", "10/25/2019", 4)
 ];
