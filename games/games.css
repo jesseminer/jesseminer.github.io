@@ -1,8 +1,26 @@
-* { margin: 0; padding: 0; }
-body { font: 13px/160% "Lucida grande"; color: #444; }
-p, table { margin-bottom: 15px; }
-th { text-align: left; }
-input[type=text] { height: 12px; }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font: 13px/160% "Lucida grande";
+  color: #444;
+}
+
+p, table {
+  margin-bottom: 15px;
+}
+
+th {
+  text-align: left;
+}
+
+input[type=text] {
+  height: 12px;
+}
+
 input[type=button] {
   background-color: #c6c6c6;
   border: 1px solid #888;
@@ -13,14 +31,62 @@ input[type=button] {
   outline: none;
   padding: 2px 5px;
 }
-input[type=button]:hover { background-color: #888; color: #fff; }
+
+input[type=button]:hover {
+  background-color: #888;
+  color: #fff;
+}
+
+#main {
+  padding: 35px;
+}
+
+.games {
+  position: relative;
+}
+
+.timeline {
+  display: flex;
+  justify-content: space-between;
+}
 
 .game_table { border: 1px solid #999; }
 .game_table tr:nth-child(odd) { background-color: #e0e0ff; }
 .game_table td, .game_table th { padding: 3px 8px; }
-.game_div { border: 1px solid #000; position: absolute; height: 7px; width: 30px; background-color: #e0e0ff; }
-.game_div:hover { background-color: #00f; }
-.year_div { position: absolute; height: 1px; width: 650px; font-size: 10px; border-top: 1px solid #777; }
 
-#settings { float: left; background-color: #ddd; padding: 35px; position: fixed; width: 225px; height: 100%; }
-#main { float: left; padding: 35px; margin-left: 295px; }
+.game_div {
+  background-color: #bbbbff;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 8px;
+  position: absolute;
+  width: 8px;
+}
+
+.game_div:hover {
+  background-color: #00f;
+}
+
+.year_div {
+  font-size: 10px;
+  width: 1px;
+}
+
+.year_line {
+  border-left: 1px solid #dddddd;
+  height: calc(100vh - 120px);
+}
+
+.year_text {
+  margin-left: -11px;
+}
+
+#settings {
+  background-color: #ddd;
+  display: none;
+  height: 100%;
+  float: left;
+  padding: 35px;
+  position: fixed;
+  width: 225px;
+}

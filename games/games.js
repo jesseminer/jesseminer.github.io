@@ -1,23 +1,26 @@
-timeline_height = 600; //pixels
+window.app = {
+  dotRadius: 4,
+  timelineWidth: $('.timeline').width()
+};
 
 function Game(title, date, series_id) {
   this.title = title;
   this.date = date;
   this.series_id = series_id;
-  
+
   this.series = function() {
     return series[this.series_id];
   }
-  
+
   this.year = function() {
     return new Date(this.date).getFullYear();
   }
-  
+
   this.nice_date = function() {
     var d = new Date(this.date);
     return months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
   }
-  
+
   this.toString = function() {
     var series_str = this.series_id ? " (" + this.series() + ")" : "";
     return this.title + " - " + this.nice_date();// + series_str;
@@ -43,24 +46,24 @@ function timeline(game_array) {
     var end_year = parseInt($('#end_year').val());
   }
   var time_span = Date.parse(end_year + 1) - Date.parse(start_year);
-  
+
   var year_markers = '';
   for (var i = start_year; i <= end_year + 1; i++) {
-    var top = timeline_position('1/1/' + i, start_year, time_span);
-    year_markers += '<div class="year_div" style="margin-top: '+ top +'px;">'+ i + '</div>\n'
+    year_markers += `<div class="year_div"><div class="year_text">${i}</div><div class="year_line"></div><div class="year_text">${i}</div></div>\n`;
   }
-  
+
   var game_markers = game_array.map(function(g) {
-    var left = 40 + g.series_id * 45;
-    var top = timeline_position(g.date, start_year, time_span);
-    return '<div class="game_div" style="margin-left: '+ left +'px; margin-top: '+ top +'px;" title="'+ g +'">&nbsp;</div>\n';
+    var top = 40 + g.series_id * 45;
+    var left = timeline_position(g.date, start_year, time_span) - app.dotRadius;
+    return `<div class="game_div" style="margin-left: ${left}px; margin-top: ${top}px;" title="${g}"></div>\n`;
   }).join('');
-  
-  $('#main').html(year_markers + game_markers);
+
+  $('.timeline').html(year_markers);
+  $('.games').html(game_markers);
 }
 
 function timeline_position(date, start_year, time_span) {
-  return Math.floor((Date.parse(date) - Date.parse('1/1/' + start_year)) / time_span * timeline_height);
+  return Math.floor((Date.parse(date) - Date.parse('1/1/' + start_year)) / time_span * app.timelineWidth);
 }
 
 function display() {
