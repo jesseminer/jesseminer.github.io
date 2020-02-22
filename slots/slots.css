@@ -31,6 +31,10 @@ p {
   text-align: center;
 }
 
+.red {
+  color: #ff0000;
+}
+
 #bank {
   font-size: 1.1em;
 }
@@ -55,6 +59,10 @@ p {
 #start-over {
   font-size: 0.85em;
   text-decoration: none;
+}
+
+#start-over:visited {
+  color: #0000ff;
 }
 
 .clear { clear: both; height: 0px; }
