@@ -12,7 +12,7 @@
 <body>
   <div id="container">
     <div id="slots">
-      <img v-for="num in results" :src="images[num]">
+      <img v-for="num in results" :src="`images/${images[num]}`">
     </div>
 
     <div class="margin-top-x text-center">
