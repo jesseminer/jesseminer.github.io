@@ -4,10 +4,10 @@ new Vue({
     betOptions: [1, 10, 50, 100, 'all'],
     images: ['skull.png', 'cornell.png', 'mario.png', 'blotus.png'],
     message: '',
-    money: 200,
+    money: 500,
     redMessage: false,
-    results: [0, 0, 0],
-    rewards: [-4, 1, 2, 3],
+    results: [3, 3, 3],
+    rewards: [-3, 1, 2, 3],
     selectedBet: 10
   },
 
@@ -31,12 +31,11 @@ new Vue({
       var s3 = this.results[2];
 
       if (s1 == s2 && s1 == s3) {
-        x = this.rewards[s1] * 9;
+        x = this.rewards[s1] * 7;
       } else {
         var c = this.count(s1, s2, s3);
         var indexOf2 = c.indexOf(2);
-        if (indexOf2 > -1) x = this.rewards[indexOf2] * 4 + this.rewards[c.indexOf(1)];
-        else x = (this.rewards[s1] + this.rewards[s2] + this.rewards[s3]) / 2;
+        x = indexOf2 > -1 ? this.rewards[indexOf2] : -1;
       }
       return Math.round(x * bet);
     },
@@ -46,8 +45,8 @@ new Vue({
     },
 
     reset: function () {
-      this.results = [0, 0, 0];
-      this.money = 200;
+      this.results = [3, 3, 3];
+      this.money = 500;
       this.selectedBet = 10;
       this.setMsg('');
     },
