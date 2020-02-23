@@ -3,6 +3,7 @@
   display: flex;
 }
 
+.margin-top-sm { margin-top: 0.5em; }
 .margin-bottom-sm { margin-bottom: 0.5em; }
 .margin-left-sm { margin-left: 0.5em; }
 
@@ -11,4 +12,16 @@
 .margin-bottom { margin-bottom: 1em; }
 .margin-left { margin-left: 1em; }
 
+.margin-top-x { margin-top: 2em; }
+
+.margin-top-xx { margin-top: 3em; }
+
 .text-center { text-align: center; }
+
+.big { font-size: 1.2em; }
+.small { font-size: 0.85em; }
+
+.bold { font-weight: bold; }
+
+.gray { color: #888888; }
+.red { color: #ff0000; }

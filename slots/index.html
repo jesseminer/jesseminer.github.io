@@ -1,54 +1,46 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
+<html>
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+  <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jesse's Fair Slot Machine</title>
-  <link type="text/css" rel="stylesheet" href="slots.css" />
-  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script type="text/javascript" src="slots.js" /></script>
-  <script type="text/javascript">
-    $(function() {
-      $('#bets input').click(function() { bet = this.value; });
-      start();
-    });
-  </script>
+  <link type="text/css" rel="stylesheet" href="../utilities.css">
+  <link type="text/css" rel="stylesheet" href="slots.css">
 </head>
 
 <body>
   <div id="container">
+    <div id="slots">
+      <img v-for="num in results" :src="`images/${images[num]}`">
+    </div>
 
-  <div id="slots">
-    <p>
-      <img id="slot1" src="" alt="slot1" />
-      <img id="slot2" src="" alt="slot2" />
-      <img id="slot3" src="" alt="slot3" />
-    </p>
-    <p id="message"></p>
+    <div class="margin-top-x text-center">
+      <button id="spin" @click="spin">SPIN</button>
+    </div>
+
+    <div id="status" class="margin-top">
+      <div>
+        <div class="small gray margin-bottom-sm">Money</div>
+        <div class="big">${{money}}</div>
+      </div>
+      <span id="message" :class="{ red: redMessage }">{{message}}</span>
+    </div>
+
+    <div class="small gray margin-top-xx">Change bet</div>
+    <div id="bets" class="margin-top-sm">
+      <span v-for="amount in betOptions" @click="selectedBet = amount" :class="{ selected: selectedBet === amount }">
+        {{betLabel(amount)}}
+      </span>
+    </div>
+
+    <div class="margin-top">
+      <button id="start-over" @click="reset">Start Over</button>
+    </div>
   </div>
 
-  <div id="controls">
-    <p>
-      Money:<br />
-      <span id="bank"></span>
-    </p>
-    <p id="bets">Your bet:<br />
-       <input id="bet1" type="radio" name="bet" value="1" /><label for="bet1"> 1</label><br />
-       <input id="bet2" type="radio" name="bet" value="10" /><label for="bet2"> 10</label><br />
-       <input id="bet3" type="radio" name="bet" value="50" /><label for="bet3"> 50</label><br />
-       <input id="bet4" type="radio" name="bet" value="100" /><label for="bet4"> 100</label><br />
-       <input id="bet5" type="radio" name="bet" value="all" /><label for="bet5"> All I have left!</label>
-    </p>
-    <p>
-      <input id="spin" onclick="spin()" value="SPIN" type="button" />
-    </p>
-    <p>
-      <a id="start-over" href="javascript:start();">Start Over</a>
-    </p>
-  </div>
-
-  <div class="clear"></div>
-
-  </div>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
+  <script type="text/javascript" src="slots.js"></script>
 </body>
+
 </html>
