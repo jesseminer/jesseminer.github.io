@@ -19,10 +19,10 @@
       <button id="spin" @click="spin">SPIN</button>
     </div>
 
-    <div id="status" class="margin-top">
+    <div id="status" class="margin-top-x">
       <div>
         <div class="small gray margin-bottom-sm">Money</div>
-        <div class="big">${{money}}</div>
+        <div id="money">${{money}}</div>
       </div>
       <span id="message" :class="{ red: redMessage }">{{message}}</span>
     </div>
@@ -34,7 +34,8 @@
       </span>
     </div>
 
-    <div class="margin-top">
+    <div class="small gray margin-top-xx">Reset</div>
+    <div class="margin-top-sm">
       <button id="start-over" @click="reset">Start Over</button>
     </div>
   </div>

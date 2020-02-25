@@ -19,9 +19,13 @@ body {
 }
 
 #status {
-  align-items: center;
+  align-items: flex-end;
   display: flex;
   justify-content: space-between;
+}
+
+#money {
+  font-size: 1.8em;
 }
 
 #message {
@@ -34,7 +38,7 @@ body {
 }
 
 #bets span {
-  background-color: #eeeeee;
+  background-image: linear-gradient(to bottom right, #f7f7f7, #d7d7d7);
   cursor: pointer;
   flex-grow: 1;
   padding: 10px 0;
@@ -42,7 +46,7 @@ body {
 }
 
 #bets span:hover {
-  background-color: #ccc;
+  background-image: linear-gradient(to bottom right, #f7f7f7, #bbbbbb);
 }
 
 #bets span:first-child {
@@ -54,7 +58,7 @@ body {
 }
 
 #bets span.selected {
-  background-color: #223c66;
+  background-image: linear-gradient(#223c66, #223c66);
   color: #ffffff;
 }
 
@@ -85,4 +89,11 @@ body {
 
 #start-over:hover {
   background-color: #eee;
+}
+
+@media screen and (max-width: 480px) {
+  #container {
+    margin: 20px auto;
+    padding: 10px;
+  }
 }
