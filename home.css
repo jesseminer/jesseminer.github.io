@@ -1,14 +1,51 @@
-* { margin: 0; padding: 0; }
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-body { font: 13px/140% arial, sans-serif; width: 650px; margin: 25px auto; color: #555; }
+body {
+  background-color: #eeeeee;
+  font: 14px/150% Arial;
+}
 
-#banner { font: 40px "trebuchet ms"; color: #000; border-bottom: 8px solid #137; margin-bottom: 12px; }
+a {
+  color: currentcolor;
+  text-decoration: none;
+}
 
-.feature, #intro { margin-bottom: 20px; }
-.feature .thumbnail { margin-right: 16px; float: left; }
-.feature .title { font-size: 20px; }
-.clear { clear: both; }
+a:hover {
+  text-decoration: underline;
+}
 
-p { margin-bottom: 12px; }
-a { text-decoration: none; }
-a img { border: 1px solid #888; border-radius: 3px; width: 240px; }
+h1 {
+  border-bottom: 6px solid #113388;
+  font-family: "trebuchet ms";
+  font-size: 40px;
+  margin-bottom: 15px;
+  padding-bottom: 18px;
+}
+
+h2 {
+  font-weight: normal;
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 6px;
+  box-shadow: 4px 4px 6px 0px #cccccc;
+  color: #333333;
+  display: flex;
+  margin-top: 2em;
+  padding: 1.4em;
+}
+
+.card img {
+  width: 220px;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 700px;
+  padding: 3em 1.5em;
+}
