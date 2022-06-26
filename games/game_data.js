@@ -123,5 +123,13 @@ games = [
   g("Crackdown 3", "2/15/2019", 5),
   g("Gears of War 5", "9/10/2019", 9),
   g("Borderlands 3", "9/13/2019", 0),
-  g("Call of Duty: Modern Warfare", "10/25/2019", 4)
+  g("Call of Duty: Modern Warfare", "10/25/2019", 4),
+
+  g("Assassin's Creed Valhalla", "11/10/2020", 2),
+  g("Call of Duty: Black Ops Cold War", "11/13/2020", 4),
+
+  g("Call of Duty: Vanguard", "11/5/2021", 4),
+  g("Forza Horizon 5", "11/9/2021", 0),
+  g("Battlefield 2042", "11/19/2021", 3),
+  g("Halo Infinite", "12/8/2021", 10)
 ];
