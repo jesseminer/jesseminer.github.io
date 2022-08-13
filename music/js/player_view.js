@@ -3,7 +3,7 @@ PlayerView = function () {
   this.player = this.el.querySelector('audio');
 
   this.playRandomSong = () => {
-    var index = Math.floor(Math.random() * app.songs.length);
+    const index = Math.floor(Math.random() * app.songs.length);
     this.playSong(app.songs[index]);
   };
 
