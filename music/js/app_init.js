@@ -1,8 +1,3 @@
-window.app = {
-  playerView: new PlayerView(),
-  songListView: new SongListView()
-}
-
 app.songListView.addSearchListener()
 app.songListView.addPlayButtonListener()
 
