@@ -1,7 +1,7 @@
 SongListView = function () {
   this.el = document.querySelector('.song-list');
 
-  this.addPlayButtonListener = function () {
+  this.addPlayButtonListener = () => {
     this.el.addEventListener('click', function (e) {
       var btn = e.target;
       var clickedTriangle = btn.classList.contains('play-triangle');
@@ -9,19 +9,17 @@ SongListView = function () {
       if (clickedTriangle) { btn = btn.parentElement; }
 
       var songId = parseInt(btn.getAttribute('data-id'));
-      var song = app.songs.find(function (s) {
-        return s.id === songId;
-      });
+      var song = app.songs.find(s => s.id === songId);
       app.playerView.playSong(song);
     });
   };
 
-  this.addSearchListener = function () {
+  this.addSearchListener = () => {
     var self = this;
     document.querySelector('.search-box').addEventListener('keyup', function (e) {
       var query = this.value.toLowerCase();
       if (query) {
-        var matchingSongs = app.songs.filter(function (song) {
+        var matchingSongs = app.songs.filter(song => {
           var artistName = (song.artist || '').toLowerCase();
           return song.title.toLowerCase().includes(query) || artistName.includes(query);
         });
@@ -32,10 +30,9 @@ SongListView = function () {
     });
   };
 
-  this.render = function (songs) {
-    var self = this;
+  this.render = songs => {
     this.el.innerHTML = '';
-    songs.forEach(function (song) {
+    songs.forEach(song => {
       var row = document.createElement('tr');
       row.classList.add('song-row');
       row.innerHTML = `
@@ -49,7 +46,7 @@ SongListView = function () {
         </td>
         <td class="artist-name">${(song.artist || '').substring(0, 40)}</td>
       `;
-      self.el.appendChild(row);
+      this.el.appendChild(row);
     });
   };
 };
