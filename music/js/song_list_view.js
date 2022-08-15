@@ -1,17 +1,15 @@
 app.songListView = (function () {
   const el = document.querySelector('.song-list')
 
-  const addPlayButtonListener = () => {
-    el.addEventListener('click', function (e) {
-      let btn = e.target
-      const clickedTriangle = btn.classList.contains('play-triangle')
-      if (!btn.classList.contains('play-song') && !clickedTriangle) { return }
-      if (clickedTriangle) { btn = btn.parentElement }
+  const playButtonListener = e => {
+    let btn = e.target
+    const clickedTriangle = btn.classList.contains('play-triangle')
+    if (!btn.classList.contains('play-song') && !clickedTriangle) { return }
+    if (clickedTriangle) { btn = btn.parentElement }
 
-      const songId = parseInt(btn.getAttribute('data-id'))
-      const song = app.songs.find(s => s.id === songId)
-      app.playerView.playSong(song)
-    })
+    const songId = parseInt(btn.getAttribute('data-id'))
+    const song = app.songs.find(s => s.id === songId)
+    app.playerView.playSong(song)
   }
 
   const render = songs => {
@@ -34,7 +32,7 @@ app.songListView = (function () {
     })
   }
 
-  addPlayButtonListener()
+  el.addEventListener('click', playButtonListener)
 
   return { render }
 })()
