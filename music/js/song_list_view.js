@@ -1,8 +1,8 @@
-SongListView = function () {
-  this.el = document.querySelector('.song-list')
+app.songListView = (function () {
+  const el = document.querySelector('.song-list')
 
-  this.addPlayButtonListener = () => {
-    this.el.addEventListener('click', function (e) {
+  const addPlayButtonListener = () => {
+    el.addEventListener('click', function (e) {
       let btn = e.target
       const clickedTriangle = btn.classList.contains('play-triangle')
       if (!btn.classList.contains('play-song') && !clickedTriangle) { return }
@@ -14,8 +14,7 @@ SongListView = function () {
     })
   }
 
-  this.addSearchListener = () => {
-    const self = this
+  const addSearchListener = () => {
     document.querySelector('.search-box').addEventListener('keyup', function (e) {
       const query = this.value.toLowerCase()
       if (query) {
@@ -23,15 +22,15 @@ SongListView = function () {
           const artistName = (song.artist || '').toLowerCase()
           return song.title.toLowerCase().includes(query) || artistName.includes(query)
         })
-        self.render(matchingSongs)
+        render(matchingSongs)
       } else {
-        self.render(app.songs)
+        render(app.songs)
       }
     })
   }
 
-  this.render = songs => {
-    this.el.innerHTML = ''
+  const render = songs => {
+    el.innerHTML = ''
     songs.forEach(song => {
       const row = document.createElement('tr')
       row.classList.add('song-row')
@@ -46,7 +45,12 @@ SongListView = function () {
         </td>
         <td class="artist-name">${(song.artist || '').substring(0, 40)}</td>
       `
-      this.el.appendChild(row)
+      el.appendChild(row)
     })
   }
-}
+
+  addSearchListener()
+  addPlayButtonListener()
+
+  return { render }
+})()
