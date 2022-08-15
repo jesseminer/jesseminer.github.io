@@ -14,21 +14,6 @@ app.songListView = (function () {
     })
   }
 
-  const addSearchListener = () => {
-    document.querySelector('.search-box').addEventListener('keyup', function (e) {
-      const query = this.value.toLowerCase()
-      if (query) {
-        const matchingSongs = app.songs.filter(song => {
-          const artistName = (song.artist || '').toLowerCase()
-          return song.title.toLowerCase().includes(query) || artistName.includes(query)
-        })
-        render(matchingSongs)
-      } else {
-        render(app.songs)
-      }
-    })
-  }
-
   const render = songs => {
     el.innerHTML = ''
     songs.forEach(song => {
@@ -49,7 +34,6 @@ app.songListView = (function () {
     })
   }
 
-  addSearchListener()
   addPlayButtonListener()
 
   return { render }
