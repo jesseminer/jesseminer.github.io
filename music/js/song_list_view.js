@@ -13,26 +13,22 @@ app.songListView = (function () {
   }
 
   const render = songs => {
-    el.innerHTML = ''
-    songs.forEach(song => {
-      const row = document.createElement('tr')
-      row.classList.add('song-row')
-      row.innerHTML = songTemplate(song)
-      el.appendChild(row)
-    })
+    el.innerHTML = songs.map(songTemplate).join('')
   }
 
   const songTemplate = song => {
     return `
-      <td>
-        <div class="flex-vertical-center">
-          <div class="play-song" data-id="${song.id}">
-            <div class="play-triangle"></div>
+      <tr class="song-row">
+        <td>
+          <div class="flex-vertical-center">
+            <div class="play-song" data-id="${song.id}">
+              <div class="play-triangle"></div>
+            </div>
+            <span class="margin-left-sm">${song.title.substring(0, 40)}</span>
           </div>
-          <span class="margin-left-sm">${song.title.substring(0, 40)}</span>
-        </div>
-      </td>
-      <td class="artist-name">${(song.artist || '').substring(0, 40)}</td>
+        </td>
+        <td class="artist-name">${(song.artist || '').substring(0, 40)}</td>
+      </tr>
     `
   }
 
