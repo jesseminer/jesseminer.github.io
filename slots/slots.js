@@ -1,22 +1,23 @@
-new Vue({
-  el: '#container',
-  data: {
-    betOptions: [1, 10, 50, 100, 'all'],
-    images: ['skull.png', 'cornell.png', 'mario.png', 'blotus.png'],
-    message: '',
-    money: 500,
-    redMessage: false,
-    results: [3, 3, 3],
-    rewards: [-3, 1, 2, 3],
-    selectedBet: 10
+Vue.createApp({
+  data () {
+    return {
+      betOptions: [1, 10, 50, 100, 'all'],
+      images: ['skull.png', 'cornell.png', 'mario.png', 'blotus.png'],
+      message: '',
+      money: 500,
+      redMessage: false,
+      results: [3, 3, 3],
+      rewards: [-3, 1, 2, 3],
+      selectedBet: 10
+    }
   },
 
   methods: {
-    betLabel: function (amount) {
+    betLabel (amount) {
       return amount === 'all' ? 'All I have left!' : amount;
     },
 
-    count: function (s1, s2, s3) {
+    count (s1, s2, s3) {
       var counts = [0, 0, 0, 0];
       counts[s1]++;
       counts[s2]++;
@@ -24,7 +25,7 @@ new Vue({
       return counts;
     },
 
-    getWinnings: function (bet) {
+    getWinnings (bet) {
       var x;
       var s1 = this.results[0];
       var s2 = this.results[1];
@@ -40,23 +41,23 @@ new Vue({
       return Math.round(x * bet);
     },
 
-    randomImage: function () {
+    randomImage () {
       return Math.floor(Math.random() * 4);
     },
 
-    reset: function () {
+    reset () {
       this.results = [3, 3, 3];
       this.money = 500;
       this.selectedBet = 10;
       this.setMsg('');
     },
 
-    setMsg: function (msg, red) {
+    setMsg (msg, red) {
       this.message = msg;
       this.redMessage = red;
     },
 
-    spin: function () {
+    spin () {
       if (this.money <= 0) {
         this.setMsg("You're broke!");
         return;
@@ -78,4 +79,4 @@ new Vue({
         this.setMsg(amountWon, true);
     }
   }
-});
+}).mount('#container');
