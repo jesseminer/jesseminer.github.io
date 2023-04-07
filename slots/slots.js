@@ -1,14 +1,15 @@
-new Vue({
-  el: '#container',
-  data: {
-    betOptions: [1, 10, 50, 100, 'all'],
-    images: ['skull.png', 'cornell.png', 'mario.png', 'blotus.png'],
-    message: '',
-    money: 500,
-    redMessage: false,
-    results: [3, 3, 3],
-    rewards: [-3, 1, 2, 3],
-    selectedBet: 10
+Vue.createApp({
+  data: function () {
+    return {
+      betOptions: [1, 10, 50, 100, 'all'],
+      images: ['skull.png', 'cornell.png', 'mario.png', 'blotus.png'],
+      message: '',
+      money: 500,
+      redMessage: false,
+      results: [3, 3, 3],
+      rewards: [-3, 1, 2, 3],
+      selectedBet: 10
+    }
   },
 
   methods: {
@@ -78,4 +79,4 @@ new Vue({
         this.setMsg(amountWon, true);
     }
   }
-});
+}).mount('#container');
