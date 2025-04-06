@@ -4,7 +4,7 @@ app.playerView = (function () {
   const searchBox = el.querySelector('.search-box')
 
   const playSong = song => {
-    player.src = 'https://drive.google.com/uc?export=download&id=' + song.file_id
+    player.src = `/Users/jesse/Music/${song.file_id}`
     player.play()
     el.querySelector('.current-song').textContent = song.title
     document.title = song.title
