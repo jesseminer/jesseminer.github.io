@@ -6,8 +6,9 @@ app.playerView = (function () {
   const playSong = song => {
     player.src = `/Users/jesse/Music/${song.file_id}`
     player.play()
-    el.querySelector('.current-song').textContent = song.title
-    document.title = song.title
+    const title = `${song.title} - ${song.artist}`
+    el.querySelector('.current-song').textContent = title
+    document.title = title
   }
 
   const playRandomSong = () => {
